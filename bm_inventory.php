@@ -115,9 +115,6 @@ class Bm_Inventory extends Module
             $link_array = explode("?", $link_tmp);
             $link = $link_array[0] . "/" . $row['pr_id'] . "?" . $link_array[1] . "#tab-step1";
 
-            // https://bracli.i06.de/meinshop/index.php/sell/catalog/products?_token=XXA8s4C7usvip2iE2TqODSj5cAykERdRqvBzaltZsFM&id_product=454#tab-step1
-            // https://bracli.i06.de/meinshop/index.php/sell/catalog/products/8?_token=XXA8s4C7usvip2iE2TqODSj5cAykERdRqvBzaltZsFM#tab-step1
-
             $output .= '<tr><td> &nbsp; '
                 . $row['kategorie'] . '</td><td> &nbsp; '
                 . '<a href="' . $link . '" target="_blank">'
