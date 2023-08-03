@@ -14,7 +14,7 @@ $output = fopen('php://output', 'w');
 
 $id_lang = (int) Configuration::get('PS_LANG_DEFAULT');
 
-fputcsv($output, array('Kategorie Name', 'Marke', 'EAN', 'ID', 'Produkt Name', 'Größe / Farbe', 'Anzahl im Lager', 'EK netto (Einzel)', 'EK netto (Anzahl)', 'VK Brutto (Einzel)', 'VK Brutto (Gesamt)'));
+fputcsv($output, array('Kategorie Name', 'Marke', 'EAN', 'ID', 'Produkt Name', 'Variante (Size/Color)', 'Anzahl im Lager', 'EK netto (Einzel)', 'EK netto (Anzahl)', 'VK Brutto (Einzel)', 'VK Brutto (Gesamt)'));
 
 $sql = "SELECT 
             cl.`name` as kategorie, 
@@ -58,10 +58,10 @@ foreach ($rows as $row) {
             $row['product'],
             $row['variante'],
             $row['anzahl'],
-            $row['ek'],
-            $row['ek'] * $row['anzahl'],
-            $row['vk'],
-            $row['vk'] * $row['anzahl']
+            str_replace(".", ",", $row['ek']),
+            str_replace(".", ",", $row['ek'] * $row['anzahl']),
+            str_replace(".", ",", $row['vk']),
+            str_replace(".", ",", $row['vk'] * $row['anzahl'])
         );
 
         // Varianten holen 
@@ -115,8 +115,8 @@ foreach ($rows as $row) {
             $data[2] = $product['ean'];
             $data[5] = $product['variante'];
             $data[6] = $product['anzahl'];
-            $data[8] = $row['ek'] * $product['anzahl'];
-            $data[10] = $row['vk'] * $product['anzahl'];
+            $data[8] = str_replace(".", ",", $row['ek'] * $product['anzahl']);
+            $data[10] = str_replace(".", ",", $row['vk'] * $product['anzahl']);
             fputcsv($output, $data);
             // print_r($data);
         }
@@ -129,10 +129,10 @@ foreach ($rows as $row) {
             $row['product'],
             $row['variante'],
             $row['anzahl'],
-            $row['ek'],
-            $row['ek'] * $row['anzahl'],
-            $row['vk'],
-            $row['vk'] * $row['anzahl']
+            str_replace(".", ",", $row['ek']),
+            str_replace(".", ",", $row['ek'] * $row['anzahl']),
+            str_replace(".", ",", $row['vk']),
+            str_replace(".", ",", $row['vk'] * $row['anzahl'])
         );
 
         fputcsv($output, $data);

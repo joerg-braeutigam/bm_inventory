@@ -9,7 +9,7 @@ class Bm_Inventory extends Module
     {
         $this->name = 'bm_inventory';
         $this->tab = 'front_office_features';
-        $this->version = '1.1.0';
+        $this->version = '1.1.1';
         $this->author = 'Braeutiigam Media';
         $this->need_instance = 0;
         $this->ps_versions_compliancy = [
